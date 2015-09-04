@@ -109,6 +109,7 @@ self.addEventListener('fetch', function(event) {
 //self.onfetch = function(event) {
     var request = event.request;
 
+    
     if(request.url !== "https://www.google-analytics.com/analytics.js") {
         event.respondWith(
 
