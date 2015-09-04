@@ -3,4 +3,6 @@
 3. git subtree push --prefix dist origin gh-pages
 
 // if already exist, use this
-3.b git push origin `git subtree split --prefix dist master`:gh-pages --force
+3.b
+
+git push origin `git subtree split --prefix dist master`:gh-pages --force

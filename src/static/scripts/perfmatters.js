@@ -11,13 +11,5 @@ function logCRP() {
 
 window.addEventListener("load", function(event) {
   logCRP();
-  //var FontFaceObserver = require('')
-  //var observer = new FontFaceObserver('Open Sans', {});
-  //
-  //observer.check(null, 5000).then(function () {
-  //  console.log('Font is available');
-  //}, function () {
-  //  console.log('Font is not available after waiting 5 seconds');
-  //});
 });
 

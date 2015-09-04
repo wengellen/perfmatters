@@ -24,12 +24,6 @@ module.exports = function(grunt) {
         /** Setup tasks **/
 
         /** JavaScript **/
-        concat: {
-            dist: {
-                src: ['src/static/scripts/perfmatters.js', 'src/static/scripts/app.js'],
-                dest: 'dist/static/scripts/perfmatters.concat.js'
-            }
-        },
 
         jshint: {
             options: {
@@ -58,6 +52,17 @@ module.exports = function(grunt) {
             afterconcat: ['src/static/scripts/perfmatters.concat.js']
         },
 
+        /* Concat */
+        concat: {
+            js: {
+                src: [ 'src/static/scripts/**/*.js'],
+                dest: '../dist/combined.js',
+                options: {
+                    separator: ';'
+                }
+            }
+        },
+
         codekit: {
             build: {
                 files: {
@@ -83,9 +88,7 @@ module.exports = function(grunt) {
                     removeComments: true,
                     collapseWhitespace: true,
                     minifyCSS: true,
-                    minifyJS: true,
-                    removeEmptyElements: true
-
+                    minifyJS: true
                 },
                 files: {
                     'dist/index.html': 'src/index.html',
@@ -276,7 +279,7 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'src/',
                     src: [
-                        'static/serviceworker-cache-polyfill.js',
+                        'static/scripts/third_party/serviceworker-cache-polyfill.js',
                         'static/service-worker.js'
                     ],
                     dest: 'dist/'
@@ -441,7 +444,7 @@ module.exports = function(grunt) {
         'clean:afterprfixedcssfile'
     ]);
 
-    grunt.registerTask('file-only', [
+    grunt.registerTask('fileonly', [
         'clean:dist',
         'clean:pub',
         'copy',
