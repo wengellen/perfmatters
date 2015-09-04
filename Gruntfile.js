@@ -441,6 +441,17 @@ module.exports = function(grunt) {
         'clean:afterprfixedcssfile'
     ]);
 
+    grunt.registerTask('file-only', [
+        'clean:dist',
+        'clean:pub',
+        'copy',
+        'js',
+        'css',
+        'htmlmin:dist',
+        'cleanup'
+    ]);
+
+
     grunt.registerTask('test', [
         'clean:dist',
         'clean:pub',
