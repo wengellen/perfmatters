@@ -12,7 +12,7 @@
 */
 
 // This polyfill provides Cache.add(), Cache.addAll(), and CacheStorage.match()
-importScripts('./serviceworker-cache-polyfill.js');
+importScripts('./static/scripts/third_party/serviceworker-cache-polyfill.js');
 
 // While overkill for this specific sample in which there is only one cache,
 // this is one best practice that can be followed in general to keep track of
@@ -35,7 +35,6 @@ var CURRENT_CACHES = {
 self.addEventListener('install', function(event) {
   var urlsToPrefetch = [
       './',
-      './static/pizza/',
       './static/styles/print.min.css',
       './static/styles/style.min.css',
       './static/scripts/perfmatters.min.js',
@@ -110,7 +109,7 @@ self.addEventListener('fetch', function(event) {
 //self.onfetch = function(event) {
     var request = event.request;
 
-    if(url !== "https://www.google-analytics.com/analytics.js") {
+    if(request.url !== "https://www.google-analytics.com/analytics.js") {
         event.respondWith(
 
         // Check the cache for a hit.
