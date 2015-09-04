@@ -28,7 +28,7 @@ importScripts('./static/scripts/third_party/serviceworker-cache-polyfill.js');
 // cache, then increment the CACHE_VERSION value. It will kick off the service worker update
 // flow and the old cache(s) will be purged as part of the activate event handler when the
 // updated service worker is activated.
-var CACHE_VERSION = 2;
+var CACHE_VERSION = 3;
 var CURRENT_CACHES = {
     prefetch: 'window-cache-v' + CACHE_VERSION
 };
@@ -109,7 +109,7 @@ self.addEventListener('activate', function(event) {
 
 self.addEventListener('fetch', function(event) {
     console.log('Handling fetch event for', event.request.url);
-    if(request.url !== "https://www.google-analytics.com/analytics.js") {
+    if(event.request.url !== "https://www.google-analytics.com/analytics.js") {
         event.respondWith(
             caches.open(CURRENT_CACHES.prefetch).then(function (cache) {
                 return cache.match(event.request).then(function (response) {
