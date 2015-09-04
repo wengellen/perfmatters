@@ -200,13 +200,13 @@ module.exports = function(grunt) {
                     expand: true,
                     src: ['*.{gif,jpg,png}'],
                     cwd: 'src/static/img_src/resp/pizza',
-                    dest: 'src/static/img/pizza'
+                    dest: 'src/static/images/pizza'
                 },
                 {
                     expand: true,
                     src: ['*.{gif,jpg,png}'],
                     cwd: 'src/static/img_src/resp',
-                    dest: 'src/static/img'
+                    dest: 'src/static/images'
 
                 }]
             }
@@ -231,7 +231,7 @@ module.exports = function(grunt) {
         /* Clear out the images directory if it exists */
         clean: {
             img: {
-                src: ['src/static/img/']
+                src: ['src/static/images/']
             },
             pub: ['public/'],
             dist: ['dist/'],
@@ -244,7 +244,7 @@ module.exports = function(grunt) {
         mkdir: {
             img: {
                 options: {
-                    create: ['src/static/img']
+                    create: ['src/static/images']
                 }
             }
         },
@@ -255,7 +255,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     src: 'src/static/img_src/fixed/*.{gif,jpg,png}',
-                    dest: 'src/static/img/',
+                    dest: 'src/static/images/',
                     flatten: true
                 }]
             },
