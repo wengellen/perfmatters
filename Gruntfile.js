@@ -212,19 +212,29 @@ module.exports = function(grunt) {
             }
         },
 
-        imageoptim: {
-            options: {
-                jpegMini: true,
-                imageAlpha: false,
-                imageOptim: true,
-                quitAfter: true
-            },
-            build: {
-                src: [
-                    'dist/**/*.png',
-                    'dist/**/*.jpg',
-                    'dist/**/*.gif'
-                ]
+        imagemin: {                          // Task
+           /* static: {                          // Target
+                options: {                       // Target options
+                    optimizationLevel: 5,
+                    svgoPlugins: [{ removeViewBox: false }]
+                },
+                files: {                         // Dictionary of files
+                    'dist/img.png': 'src/img.png', // 'destination': 'source'
+                    'dist/img.jpg': 'src/img.jpg',
+                    'dist/img.gif': 'src/img.gif'
+                }
+            },*/
+            dynamic: {
+                options: {                       // Target options
+                    optimizationLevel: 5,
+                    svgoPlugins: [{ removeViewBox: false }]
+                },          // Another target
+                files: [{
+                    expand: true,                  // Enable dynamic expansion
+                    cwd: 'src/static/images',                   // Src matches are relative to this path
+                    src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+                    dest: 'dist/static/images'                  // Destination path prefix
+                }]
             }
         },
 
@@ -410,7 +420,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-codekit');
-    grunt.loadNpmTasks('grunt-imageoptim');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-responsive-images');
     grunt.loadNpmTasks('grunt-mkdir');
     grunt.loadNpmTasks('grunt-contrib-htmlmin');
@@ -463,8 +473,8 @@ module.exports = function(grunt) {
         'css',
         'htmlmin:dist',
         'cleanup',
-        'imageoptim',
-        'compress:gzip'
+        'imagemin'
+        //'compress:gzip'
     ]);
 
 
@@ -486,7 +496,7 @@ module.exports = function(grunt) {
         'htmlmin:dist',
         'cleanup',
         'sass',
-        'imageoptim',
+        'imagemin',
         'compress:gzip'
     ]);
         //'usebanner']);
