@@ -8,7 +8,6 @@
     <title>Cameron Pittman: Portfolio</title>
 
     <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <style>
       header,
       footer,
@@ -17,7 +16,21 @@
         margin: 0 auto;
       }
     </style>
+    <script>
+      WebFontConfig = {
+        google: {
+          families: ['Open Sans:400, 700']
+        },
+        timeout: 2000 // Set the timeout to two seconds;
+      };
 
+      (function(d) {
+        var wf = d.createElement('script'), s = d.scripts[0];
+        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+        s.parentNode.insertBefore(wf, s);
+      })(document);
+
+    </script>
     <link href="./static/styles/style.min.css" rel="stylesheet">
     <!--<link href="css/under480.css" media="screen and (max-width: 480px)" rel="stylesheet">-->
     <link href="./static/styles/print.min.css" rel="stylesheet" media="print">
