@@ -19,6 +19,15 @@ module.exports = function(grunt) {
     // Grunt configuration
     grunt.initConfig({
 
+        /*paths: {
+            src: 'src/',
+            srcAssets: '<%= paths.src %>static//',
+            srcStyles: '<%= paths.srcAssets %>styles/',
+            tmpl: 'htdocs/site/templates/',
+            assets: '<%= paths.tmpl %>assets/',
+            styles: '<%= paths.assets %>styles/'
+        },
+*/
         pkg: grunt.file.readJSON('package.json'),
 
         /** Setup tasks **/
@@ -296,16 +305,16 @@ module.exports = function(grunt) {
                 }]
             },
 
-            html: {
+          /*  html: {
                 files: [{
                     expand: true,
                     cwd: 'src/',
                     src: [
-                        '**/*.html'
+                        '**!/!*.html'
                     ],
                     dest: 'dist/'
                 }]
-            }
+            }*/
         },
 
         // make a zipfile
@@ -355,8 +364,8 @@ module.exports = function(grunt) {
             notjsorcss: {
                 files: [
                     'src/**/*.*',
-                    '!src/scripts/*.*',
-                    '!src/styles/*.*'
+                    '!src/static/scripts/*.*',
+                    '!src/static/styles/*.*'
                 ],
                 tasks: ['copy:html']
             },
@@ -390,9 +399,24 @@ module.exports = function(grunt) {
                     strategy: "mobile"
                 }
             }
+        },
+
+        criticalcss: {
+            custom: {
+                options: {
+                    url: "http://localhost:8000/perfmatters2",
+                    ignoreConsole : true,
+                    forceInclude : [
+                        '.classes-that-need-to-be-included'
+                    ],
+                    width: 320,
+                    height: 240,
+                    outputfile: "dist/static/styles/critical.css",
+                    filename: "dist/static/styles/style.min.css",
+                    buffer: 900*1200
+                }
+            }
         }
-
-
     });
 
 
@@ -431,6 +455,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-criticalcss');
 
 
     grunt.registerTask('resp', ['clean:img', 'mkdir:img', 'copy:img', 'responsive_images']);
