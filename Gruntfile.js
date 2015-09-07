@@ -248,7 +248,7 @@ module.exports = function(grunt) {
                 {
                     expand: true,                  // Enable dynamic expansion
                     cwd: 'src/views/pizza/images',                   // Src matches are relative to this path
-                    src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+                    src: ['*.{png,jpg,gif}'],   // Actual patterns to match
                     dest: 'dist/views/pizza/images'                  // Destination path prefix
                 }]
             }
