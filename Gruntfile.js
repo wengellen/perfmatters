@@ -101,6 +101,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     'dist/index.html': 'src/index.html',
+                    'dist/views/pizza.html': 'src/views/pizza.html',
                     'dist/project-2048.html': 'src/project-mobile.html',
                     'dist/project-mobile.html': 'src/project-mobile.html',
                     'dist/project-webperf.html': 'src/project-webperf.html'
@@ -208,13 +209,13 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     src: ['*.{gif,jpg,png}'],
-                    cwd: 'src/static/img_src/resp/pizza',
-                    dest: 'src/static/images/pizza'
+                    cwd: 'src/img_src/resp/pizza',
+                    dest: 'src/views/pizza/images'
                 },
                 {
                     expand: true,
                     src: ['*.{gif,jpg,png}'],
-                    cwd: 'src/static/img_src/resp',
+                    cwd: 'src/img_src/resp',
                     dest: 'src/static/images'
 
                 }]
@@ -241,8 +242,14 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,                  // Enable dynamic expansion
                     cwd: 'src/static/images',                   // Src matches are relative to this path
-                    src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+                    src: ['*.{png,jpg,gif}'],   // Actual patterns to match
                     dest: 'dist/static/images'                  // Destination path prefix
+                },
+                {
+                    expand: true,                  // Enable dynamic expansion
+                    cwd: 'src/views/pizza/images',                   // Src matches are relative to this path
+                    src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+                    dest: 'dist/views/pizza/images'                  // Destination path prefix
                 }]
             }
         },
@@ -273,23 +280,15 @@ module.exports = function(grunt) {
             img: {
                 files: [{
                     expand: true,
-                    src: 'src/static/img_src/fixed/*.{gif,jpg,png}',
+                    src: 'src/img_src/fixed/*.{gif,jpg,png}',
                     dest: 'src/static/images/',
                     flatten: true
-                }]
-            },
-            build: {
-                files: [{
-                    expand: true,
-                    cwd: 'src/',
-                    src: [
-                        '**',
-                        '!static/img_src/**',
-                        '!static/scripts/**',
-                        '!static/scripts/**/*.js',
-                        '!static/styles/**/*.scss'
-                    ],
-                    dest: 'dist/'
+                },
+                {
+                    expand: true,                  // Enable dynamic expansion
+                    cwd: 'src/img_src/fixed/pizza',                   // Src matches are relative to this path
+                    src: ['**/*.{png,jpg,gif}'],   // Actual patterns to match
+                    dest: 'src/views/pizza/images'                  // Destination path prefix
                 }]
             },
 
@@ -305,16 +304,33 @@ module.exports = function(grunt) {
                 }]
             },
 
-          /*  html: {
+           /* html: {
+                 files: [{
+                     expand: true,
+                     cwd: 'src/',
+                     src: [
+                        '**!/!*.html'
+                     ],
+                     dest: 'dist/'
+                 }]
+            },*/
+
+            build: {
                 files: [{
                     expand: true,
                     cwd: 'src/',
                     src: [
-                        '**!/!*.html'
+                        '**',
+                        '!img_src/**',
+                        '!static/scripts/**',
+                        '!static/scripts/**/*.js',
+                        '!static/styles/**/*.scss'
                     ],
                     dest: 'dist/'
                 }]
-            }*/
+            },
+
+
         },
 
         // make a zipfile
@@ -472,7 +488,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-criticalcss');
     grunt.loadNpmTasks('grunt-critical');
 
 
@@ -516,7 +531,8 @@ module.exports = function(grunt) {
         'css',
         'htmlmin:dist',
         'cleanup',
-        'imagemin'
+        'imagemin',
+        'concurrent'
         //'compress:gzip'
     ]);
 
@@ -527,18 +543,18 @@ module.exports = function(grunt) {
         'codekit',
         'uglify',
         'htmlmin:dist',
-        'clean:concatenatedjsfile',
+        'cleanup',
         'sass',
         'concurrent']);
 
     grunt.registerTask('full', [
         'clean:dist',
+        'clean:pub',
         'copy',
-        'codekit',
-        'uglify',
+        'js',
+        'css',
         'htmlmin:dist',
         'cleanup',
-        'sass',
         'imagemin',
         'compress:gzip'
     ]);
