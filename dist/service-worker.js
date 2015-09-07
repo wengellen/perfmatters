@@ -51,6 +51,7 @@ self.addEventListener('install', function(event) {
         './views/pizza/images/pizzeria-medium.jpg',
         './views/pizza/images/pizzeria-small.jpg',
         // This is an image that will be used in pre_fetched.html
+        "https://cdnjs.cloudflare.com/ajax/libs/picturefill/2.3.1/picturefill.min.js",
         "https://www.google-analytics.com/analytics.js",
         "https://lh4.ggpht.com/kJEnfqhPvtm4m3EneSZ4fWYGS8lW4YNhEjk6zPkyrQaBUHc-2Y_ElDic99NHI0h-UBLXVbRCjFybFvrWxdk=s100",
         "https://lh6.ggpht.com/f_0W8h__3G99CWTjnMjD8BUKm7yp2-wJyApLtTwFoFtlal2ULf_JgHIsOQq2NiYfKOdMlXlMHDKNo5XVZLs=s100",

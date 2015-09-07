@@ -195,10 +195,10 @@ module.exports = function(grunt) {
                         {
                             name: 'large',
                             width: 1024,
-                            quality: 50
+                            quality: 40
                         },
                         {
-                            name: 'large-2x',
+                            name: '2x',
                             width: 2048,
                             quality: 40
                         }
