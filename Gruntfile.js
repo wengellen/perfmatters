@@ -104,7 +104,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     'dist/index.html': 'src/index.html',
-                    'dist/views/pizza.html': 'src/views/pizza.html',
+                    'dist/views/pizza/pizza.html': 'src/views/pizza/pizza.html',
                     'dist/project-2048.html': 'src/project-mobile.html',
                     'dist/project-mobile.html': 'src/project-mobile.html',
                     'dist/project-webperf.html': 'src/project-webperf.html'
