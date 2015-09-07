@@ -199,7 +199,7 @@ module.exports = function(grunt) {
                         },
                         {
                             name: '2x',
-                            width: 2048,
+                            width: 640,
                             quality: 40
                         }
                     ]
