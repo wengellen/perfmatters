@@ -416,7 +416,24 @@ module.exports = function(grunt) {
                     buffer: 900*1200
                 }
             }
+        },
+
+        critical: {
+            test: {
+                options: {
+                    base: './',
+                    css: [
+                        'dist/static/styles/style.min.css',
+                        'dist/static/styles/print.min.css'
+                    ],
+                    width: 320,
+                    height: 70
+                },
+                src: 'dist/index.html',
+                dest: 'dist/index-critical.html'
+            }
         }
+
     });
 
 
@@ -456,6 +473,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-criticalcss');
+    grunt.loadNpmTasks('grunt-critical');
 
 
     grunt.registerTask('resp', ['clean:img', 'mkdir:img', 'copy:img', 'responsive_images']);
@@ -475,8 +493,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('cleanup', [
         'clean:concatenatedjsfile',
-        'clean:beforeprfixedcssfile',
-        'clean:afterprfixedcssfile'
+        'clean:beforeprfixedcssfile'
+        //'clean:afterprfixedcssfile'
     ]);
 
     grunt.registerTask('fileonly', [
