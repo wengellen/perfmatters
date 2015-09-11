@@ -62,15 +62,15 @@ module.exports = function(grunt) {
         },
 
         /* Concat */
-       /* concat: {
-            js: {
-                src: [ 'src/static/scripts/!**!/!*.js'],
-                dest: '../dist/combined.js',
+        concat: {
+            css: {
+                src: ['src/views/pizza/css/style.css', 'src/views/pizza/css/bootstrap-grid.css'],
+                dest:'src/views/pizza/css/pizza.css',
                 options: {
-                    separator: ';'
+                    separator: ''
                 }
             }
-        },*/
+        },
 
         codekit: {
             build: {
@@ -159,6 +159,13 @@ module.exports = function(grunt) {
                     src: ['*.css', '!*.min.css'],
                     dest: 'dist/static/styles',
                     ext: '.min.css'
+                },
+                {
+                    expand: true,
+                    cwd: 'src/views/pizza/css',
+                    src: ['pizza.css', '!*.min.css'],
+                    dest: 'dist/views/pizza/css',
+                    ext: '.min.css'
                 }]
             }
         },
@@ -190,17 +197,17 @@ module.exports = function(grunt) {
                         {
                             name: 'medium',
                             width: 512,
-                            quality: 60
+                            quality: 50
                         },
                         {
                             name: 'large',
                             width: 1024,
-                            quality: 40
+                            quality: 20
                         },
                         {
                             name: '2x',
                             width: 640,
-                            quality: 40
+                            quality: 30
                         }
                     ]
                 },
@@ -536,14 +543,15 @@ module.exports = function(grunt) {
     grunt.registerTask('css', [
         'sass',
         'autoprefixer',
+        'concat',
         'cssmin',
     ]);
 
 
     grunt.registerTask('image', [
         'responsive_images',
-        'imageoptim'
-        //'imagemin'
+        'imagemin'
+        //'imageoptim'
     ]);
 
     grunt.registerTask('cleanup', [
@@ -572,8 +580,8 @@ module.exports = function(grunt) {
         'css',
         'htmlmin:dist',
         'cleanup',
-        //'imagemin',
-        'concurrent'
+        'imagemin'
+        //'concurrent'
         //'compress:gzip'
     ]);
 
