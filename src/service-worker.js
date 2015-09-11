@@ -37,7 +37,7 @@ self.addEventListener('install', function(event) {
     var urlsToPrefetch = [
         './',
         './static/styles/print.min.css',
-        './static/styles/style.min.css',
+        './static/styles/site.min.css',
         './static/scripts/perfmatters.min.js',
         './static/images/profilepic.jpg',
         './static/images/mobilewebdev-small.jpg',
@@ -45,8 +45,8 @@ self.addEventListener('install', function(event) {
         './static/images/2048-small.png',
 
 
-        './views/pizza/pizza.html',
-        './views/pizza/css/pizza.min.css',
+        './views/pizza/index.html',
+        './views/pizza/css/site.min.css',
         './views/pizza/js/main.min.js',
         './views/pizza/images/pizza.png',
         './views/pizza/images/pizzeria-small.jpg',
