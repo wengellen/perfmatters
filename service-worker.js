@@ -44,13 +44,17 @@ self.addEventListener('install', function(event) {
         './static/images/cam_be_like-small.jpg',
         './static/images/2048-small.png',
 
+
         './views/pizza/pizza.html',
+        './views/pizza/css/pizza.min.css',
+        './views/pizza/js/main.min.js',
         './views/pizza/images/pizza.png',
-        './views/pizza/images/pizzeria-large.jpg',
-        './views/pizza/images/pizzeria-large-2x.jpg',
-        './views/pizza/images/pizzeria-medium.jpg',
         './views/pizza/images/pizzeria-small.jpg',
+        './views/pizza/images/pizzeria-medium.jpg',
+        './views/pizza/images/pizzeria-large.jpg',
+        './views/pizza/images/pizzeria-2x.jpg',
         // This is an image that will be used in pre_fetched.html
+
         "https://cdnjs.cloudflare.com/ajax/libs/picturefill/2.3.1/picturefill.min.js",
         "https://www.google-analytics.com/analytics.js",
         "https://lh4.ggpht.com/kJEnfqhPvtm4m3EneSZ4fWYGS8lW4YNhEjk6zPkyrQaBUHc-2Y_ElDic99NHI0h-UBLXVbRCjFybFvrWxdk=s100",
@@ -133,9 +137,9 @@ self.addEventListener('fetch', function(event) {
                         return fetch(event.request.clone()).then(function (response) {
                             console.log('  Response for %s from network is: %O', event.request.url, response);
 
-                            if (response.status < 400 &&
-                                response.headers.has('content-type') &&
-                                response.headers.get('content-type').match(/^font\//i)) {
+                            //if (response.status < 400 &&
+                                //response.headers.has('content-type') &&
+                                //response.headers.get('content-type').match(/^font\//i)) {
                                 // This avoids caching responses that we know are errors (i.e. HTTP status code of 4xx or 5xx).
                                 // We also only want to cache responses that correspond to fonts,
                                 // i.e. have a Content-Type response header that starts with "font/".
@@ -149,9 +153,9 @@ self.addEventListener('fetch', function(event) {
                                 // (see https://fetch.spec.whatwg.org/#dom-response-clone)
                                 console.log('  Caching the response to', event.request.url);
                                 cache.put(event.request, response.clone());
-                            } else {
-                                console.log('  Not caching the response to', event.request.url);
-                            }
+                            // else {
+                                //console.log('  Not caching the response to', event.request.url);
+                            //}
 
                             // Return the original response object, which will be used to fulfill the resource request.
                             return response;
