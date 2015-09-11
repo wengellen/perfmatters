@@ -172,6 +172,41 @@ gulp.task('critical', function (cb) {
     });
 });
 
+gulp.task('critical-pizza', function (cb) {
+
+    // At this point, we have our
+    // production styles in main/styles.css
+
+    // As we're going to overwrite this with
+    // our critical-path CSS let's create a copy
+    // of our site-wide styles so we can async
+    // load them in later. We do this with
+    // 'copystyles' above
+
+    critical.generate({
+        base: 'dist/views/pizza/',
+        src: 'pizza.html',
+        dest: 'dist/views/pizza/css/site.min.css',
+        width: 320,
+        height: 480
+
+        //minify: true,
+
+
+    }).then(function(output){
+
+        critical.inline({
+            base: 'dist/views/pizza/',
+            src: 'pizza.html',
+            dest: 'dist/views/pizza/index.html',
+            minify: true
+        });
+    }).error(function(err){
+        console.log(err.message);
+    });
+});
+
+
 
 // inject bower components
 gulp.task('wiredep', function () {
@@ -233,4 +268,4 @@ gulp.task('desktop', function () {
     });
 });
 
-gulp.task('default', ['critical']);
+gulp.task('default', ['critical', 'critical-pizza']);
