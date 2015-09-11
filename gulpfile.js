@@ -151,18 +151,24 @@ gulp.task('critical', function (cb) {
 
     critical.generate({
         base: 'dist/',
-        src: 'index.html',
-        dest: 'static/styles/after-prefix/style.css',
+        src: 'main.html',
+        dest: 'dist/static/styles/site.min.css',
         width: 320,
-        height: 480,
-        minify: true
-    }, function(err, output){
+        height: 480
+
+        //minify: true,
+
+
+    }).then(function(output){
+
         critical.inline({
             base: 'dist/',
-            src: 'index.html',
-            dest: 'index-critical.html',
+            src: 'main.html',
+            dest: 'dist/index.html',
             minify: true
         });
+    }).error(function(err){
+        console.log(err.message);
     });
 });
 

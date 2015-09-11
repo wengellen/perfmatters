@@ -103,7 +103,7 @@ module.exports = function(grunt) {
                     minifyJS: true
                 },
                 files: {
-                    'dist/index.html': 'src/index.html',
+                    'dist/main.html': 'src/main.html',
                     'dist/views/pizza/pizza.html': 'src/views/pizza/pizza.html',
                     'dist/project-2048.html': 'src/project-mobile.html',
                     'dist/project-mobile.html': 'src/project-mobile.html',
@@ -112,7 +112,7 @@ module.exports = function(grunt) {
             },
             dev: {
                 files: {
-                    'dist/index.html': 'src/index.html',
+                    'dist/main.html': 'src/main.html',
                     'dist/project-mobile.html': 'src/project-mobile.html',
                     'dist/project-webperf.html': 'src/project-webperf.html'
                 }
@@ -484,8 +484,8 @@ module.exports = function(grunt) {
                     width: 320,
                     height: 70
                 },
-                src: 'dist/index.html',
-                dest: 'dist/index-critical.html'
+                src: 'dist/main.html',
+                dest: 'dist/index.html'
             }
         }
 
