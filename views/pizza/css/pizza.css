@@ -130,6 +130,10 @@ hr {
   .container {
     width: 970px;
   }
+
+  .pizzeria {
+    width: 30vw;
+  }
 }
 @media (min-width: 1200px) {
   .container {
