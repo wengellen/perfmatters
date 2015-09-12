@@ -102,18 +102,6 @@
       s.parentNode.insertBefore(wf, s);
     })(document);
   </script>
-
-  <!--<script>
-    var cb = function() {
-      var l = document.createElement('link'); l.rel = 'stylesheet';
-      l.href = './static/styles/style.min.css';
-      var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
-    };
-    var raf = requestAnimationFrame || mozRequestAnimationFrame ||
-            webkitRequestAnimationFrame || msRequestAnimationFrame;
-    if (raf) raf(cb);
-    else window.addEventListener('load', cb);
-  </script>-->
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
   <!-- Async load cross-site CSS, mostly interesting for production -->
   <script>
@@ -121,13 +109,13 @@
     loadCSS('static/styles/site.min.css');
   </script>
   <script>
-    (function(w,g){w['GoogleAnalyticsObject']=g;
-      w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
-
-    // TODO: replace with your Google Analytics profile ID.
-    ga('create', 'UA-XXXX-Y');
-    ga('send', 'pageview');
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
   </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
+
 </body>
 </html>
