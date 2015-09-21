@@ -577,7 +577,7 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('cleanup', [
-        'clean:concatenatedjsfile',
+        'clean:concatenatedjsfile'
     ]);
 
     grunt.registerTask('dev', [

@@ -36,18 +36,18 @@ var CURRENT_CACHES = {
 self.addEventListener('install', function(event) {
     var urlsToPrefetch = [
         './',
-        './static/styles/print.min.css',
-        './static/styles/site.min.css',
-        './static/scripts/perfmatters.min.js',
+        './static/styles/print.css',
+        './static/styles/site.css',
+        './static/scripts/perfmatters.js',
         './static/images/profilepic.jpg',
         './static/images/mobilewebdev-small.jpg',
         './static/images/cam_be_like-small.jpg',
         './static/images/2048-small.png',
 
 
-        './views/pizza/index.html',
-        './views/pizza/css/site.min.css',
-        './views/pizza/js/main.min.js',
+        './views/pizza/pizza.html',
+        './views/pizza/css/site.css',
+        './views/pizza/js/main.js',
         './views/pizza/images/pizza.png',
         './views/pizza/images/pizzeria-small.jpg',
         './views/pizza/images/pizzeria-medium.jpg',
