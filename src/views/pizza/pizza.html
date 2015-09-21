@@ -6,7 +6,7 @@
   <meta name="description" content="Udacity Front End Nanodegree Project 4 - pizzeria">
   <meta name="author" content="eweng">
   <title>Cam's Pizzeria</title>
-  <link rel="stylesheet" href="css/pizza.min.css">
+  <link rel="stylesheet" href="css/combined.css">
 </head>
 
 <body>
@@ -149,20 +149,10 @@
   </div>
   <script>
     function loadCSS(e,t,n){"use strict";var i=window.document.createElement("link");var o=t||window.document.getElementsByTagName("script")[0];i.rel="stylesheet";i.href=e;i.media="only x";o.parentNode.insertBefore(i,o);setTimeout(function(){i.media=n||"all"})}
-    loadCSS('css/site.min.css');
+    loadCSS('css/site.css');
   </script>
-  <script type="text/javascript">
-    function downloadJSAtOnload() {
-      var element = document.createElement("script");
-      element.src = "js/main.min.js";
-      document.body.appendChild(element);
-    }
-    if (window.addEventListener)
-      window.addEventListener("load", downloadJSAtOnload, false);
-    else if (window.attachEvent)
-      window.attachEvent("onload", downloadJSAtOnload);
-    else window.onload = downloadJSAtOnload;
-  </script>
+
+  <script type="text/javascript" src="js/main.js"></script>
   <script async src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/2.3.1/picturefill.min.js"></script>
 </body>
 

@@ -63,9 +63,16 @@ module.exports = function(grunt) {
 
         /* Concat */
         concat: {
-            css: {
+            index: {
+                src: ['src/static/styles/style.css'],
+                dest:'src/static/styles/style.css',
+                options: {
+                    separator: ''
+                }
+            },
+            pizza: {
                 src: ['src/views/pizza/css/style.css', 'src/views/pizza/css/bootstrap-grid.css'],
-                dest:'src/views/pizza/css/pizza.css',
+                dest:'src/views/pizza/css/combined.css',
                 options: {
                     separator: ''
                 }
@@ -73,7 +80,7 @@ module.exports = function(grunt) {
         },
 
         codekit: {
-            build: {
+            dev: {
                 files: {
                     'src/static/scripts/perfmatters.concat.js': ['src/static/scripts/perfmatters.js', 'src/static/scripts/app.js'],
                     'src/views/pizza/js/main.concat.js': ['src/views/pizza/js/main.js']
@@ -86,10 +93,10 @@ module.exports = function(grunt) {
                 mangle: false,
                 sourceMap: false
             },
-            build: {
+            dist: {
                 files: {
-                    'dist/static/scripts/perfmatters.min.js': ['src/static/scripts/perfmatters.concat.js'],
-                    'dist/views/pizza/js/main.min.js': ['src/views/pizza/js/main.concat.js']
+                    'dist/static/scripts/perfmatters.js': ['src/static/scripts/perfmatters.concat.js'],
+                    'dist/views/pizza/js/main.js': ['src/views/pizza/js/main.concat.js']
                 }
             }
         },
@@ -103,27 +110,20 @@ module.exports = function(grunt) {
                     minifyJS: true
                 },
                 files: {
-                    'dist/main.html': 'src/main.html',
+                    'dist/index.html': 'src/index.html',
                     'dist/views/pizza/pizza.html': 'src/views/pizza/pizza.html',
                     'dist/project-2048.html': 'src/project-mobile.html',
                     'dist/project-mobile.html': 'src/project-mobile.html',
                     'dist/project-webperf.html': 'src/project-webperf.html'
                 }
             },
-            dev: {
-                files: {
-                    'dist/main.html': 'src/main.html',
-                    'dist/project-mobile.html': 'src/project-mobile.html',
-                    'dist/project-webperf.html': 'src/project-webperf.html'
-                }
-            }
         },
 
 
         /** CSS **/
 
         sass: {
-            build: {
+            dev: {
                 options: {
                     //outputStyle: 'compressed',
                     sourceMap: false
@@ -132,7 +132,21 @@ module.exports = function(grunt) {
                     expand: true,
                     cwd: 'src/static/styles/',
                     src: ['style.scss', 'print.scss', 'under480.scss'],
-                    dest: 'dist/static/styles/before-prefix',
+                    dest: 'src/static/styles',
+                    ext: '.css'
+                }]
+            },
+
+            dist: {
+                options: {
+                    //outputStyle: 'compressed',
+                    sourceMap: false
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'src/static/styles/',
+                    src: ['style.scss', 'print.scss', 'under480.scss'],
+                    dest: 'dist/static/styles',
                     ext: '.css'
                 }]
             }
@@ -143,29 +157,35 @@ module.exports = function(grunt) {
                 //browsers: ['last 2 versions', 'ie 8', 'ie 9', '> 1%'],
                 browsers: ['> 0.5%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1']
             },
-            main: {
+            dev: {
                 expand: true,
                 flatten: true,
-                src: 'dist/static/styles/before-prefix/*.css',
-                dest: 'dist/static/styles/after-prefix/'
+                src: 'src/static/styles/*.css',
+                dest: 'src/static/styles'
+            },
+            dist: {
+                expand: true,
+                flatten: true,
+                src: 'dist/static/styles/*.css',
+                dest: 'dist/static/styles'
             }
         },
 
         cssmin: {
-            target: {
+            dist: {
                 files: [{
                     expand: true,
-                    cwd: 'dist/static/styles/before-prefix',
+                    cwd: 'dist/static/styles',
                     src: ['*.css', '!*.min.css'],
                     dest: 'dist/static/styles',
-                    ext: '.min.css'
+                    ext: '.css'
                 },
                 {
                     expand: true,
                     cwd: 'src/views/pizza/css',
-                    src: ['pizza.css', '!*.min.css'],
+                    src: ['combined.css', '!*.min.css'],
                     dest: 'dist/views/pizza/css',
-                    ext: '.min.css'
+                    ext: '.css'
                 }]
             }
         },
@@ -356,7 +376,7 @@ module.exports = function(grunt) {
                  }]
             },*/
 
-            build: {
+            dist: {
                 files: [{
                     expand: true,
                     cwd: 'src/',
@@ -410,7 +430,7 @@ module.exports = function(grunt) {
             options: {
                 logConcurrentOutput: true
             },
-            build: {
+            dist: {
                 tasks: ['watch:notjsorcss', 'watch:js', 'watch:scss']
             }
         },
@@ -467,7 +487,7 @@ module.exports = function(grunt) {
                     width: 320,
                     height: 240,
                     outputfile: "dist/static/styles/critical.css",
-                    filename: "dist/static/styles/style.min.css",
+                    filename: "dist/static/styles/style.css",
                     buffer: 900*1200
                 }
             }
@@ -478,13 +498,13 @@ module.exports = function(grunt) {
                 options: {
                     base: './',
                     css: [
-                        'dist/static/styles/style.min.css',
-                        'dist/static/styles/print.min.css'
+                        'dist/static/styles/style.css',
+                        'dist/static/styles/print.css'
                     ],
                     width: 320,
                     height: 70
                 },
-                src: 'dist/main.html',
+                src: 'dist/index.html',
                 dest: 'dist/index.html'
             }
         }
@@ -530,23 +550,25 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-imageoptim');
 
-
     grunt.registerTask('resp', ['clean:img', 'mkdir:img', 'copy:img', 'responsive_images']);
 
     grunt.registerTask('js', [
         'jshint:uses_defaults',
         'codekit',
-        'jshint:afterconcat',
-        'uglify',
-        'clean:concatenatedjsfile']);
+        ]);
 
     grunt.registerTask('css', [
         'sass',
-        'autoprefixer',
-        'concat',
-        'cssmin',
+        'autoprefixer:dev',
+        'concat'
     ]);
 
+    grunt.registerTask('minify', [
+        'uglify',
+        'autoprefixer:dist',
+        'cssmin',
+        'htmlmin']
+    );
 
     grunt.registerTask('image', [
         'responsive_images',
@@ -556,47 +578,33 @@ module.exports = function(grunt) {
 
     grunt.registerTask('cleanup', [
         'clean:concatenatedjsfile',
-        'clean:beforeprfixedcssfile'
-        //'clean:afterprfixedcssfile'
     ]);
 
-    grunt.registerTask('fileonly', [
+    grunt.registerTask('dev', [
         'clean:dist',
         'clean:pub',
         'copy',
         'js',
         'css',
-        'htmlmin:dist',
         'cleanup',
         'concurrent'
     ]);
 
 
-    grunt.registerTask('test', [
+    grunt.registerTask('dist', [
         'clean:dist',
         'clean:pub',
         'copy',
         'js',
         'css',
-        'htmlmin:dist',
-        'cleanup',
-        'imagemin'
-        //'concurrent'
-        //'compress:gzip'
+        'minify',
+        'cleanup'
     ]);
 
 
     grunt.registerTask('full', [
-        'clean:dist',
-        'clean:pub',
-        'copy',
-        'js',
-        'css',
-        'htmlmin:dist',
-        'cleanup',
-        'image',
+        'dist',
+        'imagemin',
         'compress:gzip'
     ]);
-        //'usebanner']);
-    //grunt.registerTask('default', ['psi-ngrok']);
 }

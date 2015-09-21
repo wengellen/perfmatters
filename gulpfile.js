@@ -151,8 +151,8 @@ gulp.task('critical', function (cb) {
 
     critical.generate({
         base: 'dist/',
-        src: 'main.html',
-        dest: 'dist/static/styles/site.min.css',
+        src: 'index.html',
+        dest: 'dist/static/styles/site.css',
         width: 320,
         height: 480
 
@@ -163,7 +163,7 @@ gulp.task('critical', function (cb) {
 
         critical.inline({
             base: 'dist/',
-            src: 'main.html',
+            src: 'index.html',
             dest: 'dist/index.html',
             minify: true
         });
@@ -186,7 +186,7 @@ gulp.task('critical-pizza', function (cb) {
     critical.generate({
         base: 'dist/views/pizza/',
         src: 'pizza.html',
-        dest: 'dist/views/pizza/css/site.min.css',
+        dest: 'dist/views/pizza/css/site.css',
         width: 320,
         height: 480
 
@@ -198,7 +198,7 @@ gulp.task('critical-pizza', function (cb) {
         critical.inline({
             base: 'dist/views/pizza/',
             src: 'pizza.html',
-            dest: 'dist/views/pizza/index.html',
+            dest: 'dist/views/pizza/pizza.html',
             minify: true
         });
     }).error(function(err){
