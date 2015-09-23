@@ -7,18 +7,25 @@ This is a website optimization project for **Udacity's Nanodegree program**.
 -----------
 1. To achieve a PageSpeed score of **90** on **index.html** page
 2. To have a consistent frame rate at **60fps** when scrolling in **pizza.html**
-2. Time to resize pizzas is **less than 5ms** in **pizza.html** shown in the brower console.
+2. Time to resize pizzas is **less than 5ms** in **pizza.html** shown in the brower console
 
 
-### Optimizations made in views/js/main.js
+### Optimizations made 
 -----------
+### - views/js/main.js
+
 1. **Debounce scroll event**: 
 ensure updatePosition is only been queued once by using a requested flag along with requestanimationframe 
-3. **Minimize DOM access**: Store the DOM Nodes into an array to hold references to the DOM elements, then use the forEach function to access each value in the array instead of the DOM.
+3. **Minimize DOM access**: Store the DOM Nodes into an array to hold references to the DOM elements, then use the forEach function to access each value in the array instead of the DOM
 4. **Minimize DOM Layout property access**: 
  5. Move the reading of scrollTop layout property into out fo updatePostion to avoid **Layout Threashing** issue 
- 5. Replace the **style.left** with **style.transfom** so that only the Composite phase is triggered instead of Layout > Paint > Composite phases.
- 6. 
+ 5. Replace the **style.left** with **style.transfom** so that only the Composite phase is triggered instead of Layout > Paint > Composite phases
+6. Changed from **querySelectorAll** to **getElementsByClassName**
+7. Moved **randomPizzas** variable declaration outside of the for loop in **resizePizzas()** to reduce DOM access
+
+### - views/pizza.html
+
+1. Move the **movingPizzas1** container to it's own row so that it can take up 100% of the background width on larger screen
 
 
 ### How to Run the Project

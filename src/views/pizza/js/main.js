@@ -403,13 +403,12 @@ var pizzaElementGenerator = function(i) {
 
 var pizzasDiv = document.getElementById("randomPizzas");
 var elem = document.querySelector("#pizzaSize");
-//var randomPizzas = document.getElementsByClassName('randomPizzaContainer');
-var randomPizzas = getDomNodeArray('randomPizzaContainer');
 
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
 var resizePizzas = function(size) {
 
   window.performance.mark("mark_start_resize");   // User Timing API function
+  var randomPizzas = document.getElementsByClassName('randomPizzaContainer');
 
   function changePizzaSizes(size) {
     var newWidth;
@@ -525,7 +524,7 @@ window.addEventListener('scroll', onScroll, false);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  var num = 100;
+  var num = 25;
   var elem;
   for (var i = 0; i < num; i++) {
     elem = document.createElement('img');
