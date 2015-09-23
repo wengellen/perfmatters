@@ -1,7 +1,7 @@
 node_modules
-public
-//dist
 .idea/
 .DS_Store
 .tmp
 .sass-cache
+Instruction.txt
+

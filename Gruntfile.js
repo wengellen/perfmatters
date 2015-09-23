@@ -18,22 +18,9 @@ module.exports = function(grunt) {
 
     // Grunt configuration
     grunt.initConfig({
-
-        /*paths: {
-            src: 'src/',
-            srcAssets: '<%= paths.src %>static//',
-            srcStyles: '<%= paths.srcAssets %>styles/',
-            tmpl: 'htdocs/site/templates/',
-            assets: '<%= paths.tmpl %>assets/',
-            styles: '<%= paths.assets %>styles/'
-        },
-*/
         pkg: grunt.file.readJSON('package.json'),
 
-        /** Setup tasks **/
-
         /** JavaScript **/
-
         jshint: {
             options: {
                 curly: true,
@@ -61,7 +48,7 @@ module.exports = function(grunt) {
             afterconcat: ['src/static/scripts/perfmatters.concat.js']
         },
 
-        /* Concat */
+        /** Concat **/
         concat: {
             index: {
                 src: ['src/static/styles/style.css'],
@@ -253,17 +240,6 @@ module.exports = function(grunt) {
         },
 
         imagemin: {                          // Task
-           /* static: {                          // Target
-                options: {                       // Target options
-                    optimizationLevel: 5,
-                    svgoPlugins: [{ removeViewBox: false }]
-                },
-                files: {                         // Dictionary of files
-                    'dist/img.png': 'src/img.png', // 'destination': 'source'
-                    'dist/img.jpg': 'src/img.jpg',
-                    'dist/img.gif': 'src/img.gif'
-                }
-            },*/
             dynamic: {
                 options: {                       // Target options
                     optimizationLevel: 7,
@@ -364,17 +340,6 @@ module.exports = function(grunt) {
                     dest: 'dist/'
                 }]
             },
-
-           /* html: {
-                 files: [{
-                     expand: true,
-                     cwd: 'src/',
-                     src: [
-                        '**!/!*.html'
-                     ],
-                     dest: 'dist/'
-                 }]
-            },*/
 
             dist: {
                 files: [{
@@ -496,19 +461,17 @@ module.exports = function(grunt) {
         critical: {
             test: {
                 options: {
-                    base: './',
+                    base: 'dist/',
                     css: [
-                        'dist/static/styles/style.css',
-                        'dist/static/styles/print.css'
+                        'dist/static/styles/style'
                     ],
                     width: 320,
-                    height: 70
+                    height: 480
                 },
-                src: 'dist/index.html',
-                dest: 'dist/index.html'
+                src: 'index.html',
+                dest: 'dist/index-critical.html'
             }
         }
-
     });
 
 
@@ -604,7 +567,6 @@ module.exports = function(grunt) {
 
     grunt.registerTask('full', [
         'dist',
-        'imagemin',
-        'compress:gzip'
+        'imagemin'
     ]);
 }
