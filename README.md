@@ -10,7 +10,7 @@ This is a website optimization project for **Udacity's Nanodegree program**.
 2. Time to resize pizzas is **less than 5ms** in **pizza.html** shown in the brower console
 
 
-### Optimizations made 
+### Optimization Changes
 -----------
 ### - views/js/main.js
 
@@ -18,7 +18,7 @@ This is a website optimization project for **Udacity's Nanodegree program**.
 ensure updatePosition is only been queued once by using a requested flag along with requestanimationframe 
 3. **Minimize DOM access**: Store the DOM Nodes into an array to hold references to the DOM elements, then use the forEach function to access each value in the array instead of the DOM
 4. **Minimize DOM Layout property access**: 
- 5. Move the reading of scrollTop layout property into out fo updatePostion to avoid **Layout Threashing** issue 
+ 5. Move the reading of **scrollTop** layout property out of updatePostion() to avoid **Layout Threashing** issue 
  5. Replace the **style.left** with **style.transfom** so that only the Composite phase is triggered instead of Layout > Paint > Composite phases
 6. Changed from **querySelectorAll** to **getElementsByClassName**
 7. Moved **randomPizzas** variable declaration outside of the for loop in **resizePizzas()** to reduce DOM access
