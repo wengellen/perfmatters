@@ -63,12 +63,6 @@ ensure updatePosition is only been queued once by using a requested flag along w
  ```
   $> gulp
  ```
-
-1. Run gulp task  
-
- ```
-  $> gulp
- ```
  
 1. Start a local server from "dist" folder
 
